@@ -1,5 +1,4 @@
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
 
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,9 +9,6 @@ class BasePage:
 
     def __init__(self, driver):
         self.driver = driver
-
-    # def click(self, element):
-    #     ActionChains(self.driver).find_element(element).pause(0.1).click().perform()
 
     def click(self, element):
         ActionChains(self.driver).move_to_element(element).pause(0.1).click().perform()
@@ -45,4 +41,3 @@ class BasePage:
             print('Alert accepted')
         except TimeoutException:
             raise AssertionError(f"No alert")
-

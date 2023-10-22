@@ -36,17 +36,3 @@ def browser(request):
     yield driver
 
     driver.close()
-
-
-@pytest.fixture(scope='session')
-def admin_page(browser):
-    browser.get(browser.url + "/administration")
-    PASSWORD = browser.find_element(By.CSS_SELECTOR, "#input-password")
-    PASSWORD.click()
-    PASSWORD.send_keys("bitnami")
-    USERNAME = browser.find_element(By.CSS_SELECTOR, "#input-username")
-    USERNAME.click()
-    USERNAME.send_keys("user")
-    SUBMIT_BUTTON = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
-    SUBMIT_BUTTON.click()
-    return browser

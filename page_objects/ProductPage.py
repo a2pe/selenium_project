@@ -6,7 +6,6 @@ from selenium_project.page_objects.BasePage import BasePage
 
 
 class ProductPage(BasePage):
-    # WISH_LIST = (By.CSS_SELECTOR, "[data-original-title='Add to Wish List']")
     WISH_LIST = (By.XPATH, '//*[@id="content"]/div[1]/div[2]/form/div/button[1]')
     COMPARE = (By.CSS_SELECTOR, "[data-original-title='Compare this Product']")
     CART = (By.CSS_SELECTOR, "#button-cart")
@@ -24,7 +23,7 @@ class ProductPage(BasePage):
         self.click(self.element(self.WISH_LIST))
 
     def add_to_cart(self):
-        time.sleep(1.5)  # Page loading problem
+        time.sleep(2)
         self.click(self.element(self.CART))
 
     def click_apple_link(self):
