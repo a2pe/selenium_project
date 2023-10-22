@@ -1,8 +1,8 @@
 import time
 
 import pytest
-from selenium.webdriver.common.by import By
 from faker import Faker
+from selenium_project.page_objects.AccountRegPage import AccountRegPage
 
 fake = Faker()
 NUM_OF_NEW_ACCOUNTS = 5
@@ -15,22 +15,12 @@ NUM_OF_NEW_ACCOUNTS = 5
 def test_register_new_account(browser, email, name, lastname, password):
     browser.get(browser.url + '/index.php?route=account/register')
     time.sleep(3)
-    first_name = browser.find_element(By.CSS_SELECTOR, '#input-firstname')
-    first_name.click()
-    first_name.send_keys(name)
-    last_name = browser.find_element(By.CSS_SELECTOR, '#input-lastname')
-    last_name.click()
-    last_name.send_keys(lastname)
-    email_field = browser.find_element(By.CSS_SELECTOR, '#input-email')
-    email_field.click()
-    email_field.send_keys(email)
-    password_field = browser.find_element(By.CSS_SELECTOR, '#input-password')
-    password_field.click()
-    password_field.send_keys(password)
-    browser.find_element(By.CSS_SELECTOR, "input[type='checkbox']").click()
-    browser.find_element(By.XPATH, '//*[@id="form-register"]/div/div/input').click()
-    browser.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
-    time.sleep(3)
-    browser.find_element(By.XPATH, '//*[@id="top"]/div/div[2]/ul/li[2]/div/a/span').click()
-    browser.find_element(By.XPATH, '//*[@id="top"]/div/div[2]/ul/li[2]/div/ul/li[5]/a').click()
-    time.sleep(3)
+    AccountRegPage(browser).enter_first_name(name)
+    AccountRegPage(browser).enter_last_name(lastname)
+    AccountRegPage(browser).enter_email(email)
+    AccountRegPage(browser).enter_password(password)
+    AccountRegPage(browser).check_subscribe()
+    AccountRegPage(browser).check_privacy_policy()
+    AccountRegPage(browser).click_submit_button()
+    AccountRegPage(browser).logout()
+    AccountRegPage(browser).register()
