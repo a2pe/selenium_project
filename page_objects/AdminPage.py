@@ -2,9 +2,6 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium_project.page_objects.BasePage import BasePage
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class AdminPage(BasePage):
@@ -96,40 +93,3 @@ class AdminPage(BasePage):
 
     def delete_product(self):
         self.click(self.element(self.DELETE_OPTION))
-
-    # def wait_and_accept_alert(self):
-    #     try:
-    #         WebDriverWait(self.driver, 10).until(EC.alert_is_present(), 'Timed out waiting for alert')
-    #         alert = self.switch_to.alert
-    #
-    #     except TimeoutException:
-    #         raise AssertionError(f"Не дождался видимости элемента")
-
-
-    # def __init__(self, driver):
-    #     super().__init__(driver)
-    #
-    # def admin_page(self, **kwargs):
-    #     self.driver.get(self.driver.url + "/administration")
-    #     PASSWORD = self.driver.find_element(By.CSS_SELECTOR, "#input-password")
-    #     PASSWORD.click()
-    #     PASSWORD.send_keys("bitnami")
-    #     USERNAME = self.driver.find_element(By.CSS_SELECTOR, "#input-username")
-    #     USERNAME.click()
-    #     USERNAME.send_keys("user")
-    #     SUBMIT_BUTTON = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
-    #     SUBMIT_BUTTON.click()
-    #     return self.driver
-
-    # def find_element(self, locator):
-    #     self.admin_page().find_element(*locator)
-    #
-    # def click_menu(self):
-    #     self.admin_page().fullscreen_window()
-    #     time.sleep(3)
-    #     new_el = self.admin_page().find_element(locator=self.MENU_CATALOG)
-    #     self.click(new_el)
-    #     # self.click(self.element(self.MENU_CATALOG))
-
-    # def click_checkout(self):
-    #     self.click(self.element_in_element(self.BUTTONS, self.CHECKOUT_LINK))
