@@ -1,9 +1,14 @@
 import time
+import allure
 
 from selenium.webdriver.common.by import By
 from selenium_project.page_objects.ProductPage import ProductPage
 
 
+@allure.epic('Epic #6')
+@allure.feature('Product Page Main Functions')
+@allure.story('Product Page links')
+@allure.title('Verifying the link from the product page')
 def test_product_page_link(browser):
     """Тестирование наличия элементов на странице продукта."""
     browser.get(browser.url + '/en-gb/product/smartphone/iphone')
@@ -12,6 +17,10 @@ def test_product_page_link(browser):
     assert element_header.text == "Apple"
 
 
+@allure.epic('Epic #6')
+@allure.feature('Product Page Main Functions')
+@allure.story('Product Page Wishlist')
+@allure.title('Verifying adding the product to the wishlist with no prior registration')
 def test_adding_product_to_wishlist(browser):
     """Тестирование добавления товара в вишлист без предварительной регистрации."""
     browser.get(browser.url + 'en-gb/product/smartphone/htc-touch-hd')
@@ -20,6 +29,10 @@ def test_adding_product_to_wishlist(browser):
     assert element == 'You must login or create an account to save HTC Touch HD to your wish list!'
 
 
+@allure.epic('Epic #6')
+@allure.feature('Product Page Main Functions')
+@allure.story('Product Page Cart')
+@allure.title('Verifying adding the product of a specific color to the cart')
 def test_adding_product_to_cart(browser):
     """Тестирование добавления товара определенного цвета в корзину."""
     browser.get(browser.url + 'en-gb/product/cameras/canon-eos-5d')
@@ -30,6 +43,10 @@ def test_adding_product_to_cart(browser):
     assert element == 'Success: You have added Canon EOS 5D to your shopping cart!'
 
 
+@allure.epic('Epic #6')
+@allure.feature('Product Page Main Functions')
+@allure.story('Product Page Cart')
+@allure.title('Verifying adding the product with the delivery date to the cart')
 def test_adding_product_to_cart_with_delivery(browser):
     """Тестирование добавления товара в корзину с выбором даты доставки."""
     browser.get(browser.url + 'en-gb/product/laptop-notebook/hp-lp3065')
@@ -45,6 +62,10 @@ def test_adding_product_to_cart_with_delivery(browser):
     assert element == 'Success: You have added HP LP3065 to your shopping cart!'
 
 
+@allure.epic('Epic #6')
+@allure.feature('Product Page Main Functions')
+@allure.story('Product Page Cart')
+@allure.title('Verifying adding several products to the cart')
 def test_adding_several_products_to_cart(browser):
     """Тестирование добавления нескольких товаров."""
     browser.get(browser.url + 'en-gb/product/mp3-players/ipod-classic')

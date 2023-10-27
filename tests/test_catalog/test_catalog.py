@@ -1,10 +1,15 @@
 import time
+import allure
 
 from selenium.webdriver.common.by import By
 from selenium_project.page_objects.CatalogPage import CatalogPage
 from selenium_project.page_objects.MainPage import MainPage
 
 
+@allure.epic('Epic #4')
+@allure.feature('Catalog Page')
+@allure.story('Catalog Product Basic Info')
+@allure.title('Verifying the subsection names in Desktops')
 def test_catalog_desktop_dropdown(browser):
     """Тестирование наличия элементов на странице каталога в разделе Desktops."""
     CatalogPage(browser).select_desktops()
@@ -14,6 +19,10 @@ def test_catalog_desktop_dropdown(browser):
     assert desktops_items[1].text == 'Mac (1)'
 
 
+@allure.epic('Epic #4')
+@allure.feature('Catalog Page')
+@allure.story('Catalog Product Basic Info')
+@allure.title('Checking the description in the product catalog')
 def test_catalog_show_desktops(browser):
     """Тестирование описания на странице каталога при выборе всех Desktops."""
     browser.get(browser.url)
@@ -23,6 +32,10 @@ def test_catalog_show_desktops(browser):
     assert desktops_description.text == 'Example of category description text'
 
 
+@allure.epic('Epic #4')
+@allure.feature('Catalog Page')
+@allure.story('Catalog Sorting and Currency Changes')
+@allure.title('Sorting products / Verifying the price in different currencies')
 def test_catalog_show_products_by_grid_or_list(browser):
     """Тестирование отображения товаров в каталоге и сортировки по цене."""
     browser.get(browser.url)
@@ -48,6 +61,10 @@ def test_catalog_show_products_by_grid_or_list(browser):
     assert first_element_price.text == '302.92€'
 
 
+@allure.epic('Epic #4')
+@allure.feature('Catalog Page')
+@allure.story('Comparing Products')
+@allure.title('Adding 2 cameras to compare')
 def test_catalog_show_products_by_grid(browser):
     """Тестирование отображения товаров в каталоге и сортировки по цене."""
     CatalogPage(browser).select_camera_items()

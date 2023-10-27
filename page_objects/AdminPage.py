@@ -1,10 +1,8 @@
 import time
+import allure
 
 from selenium.webdriver.common.by import By
 from selenium_project.page_objects.BasePage import BasePage
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class AdminPage(BasePage):
@@ -40,46 +38,60 @@ class AdminPage(BasePage):
     FIRST_PRODUCT_CHECK = (By.XPATH, '//*[@id="form-product"]/div[1]/table/tbody/tr[1]/td[1]/input')
     DELETE_OPTION = (By.XPATH, '//*[@id="content"]/div[1]/div/div/button[3]')
 
+    @allure.step('Ввод пароля')
     def enter_password(self, password=ADMIN_PASSWORD):
         self._input(self.element(self.PASSWORD), password)
 
+    @allure.step('Ввод логина')
     def enter_username(self, username=ADMIN_USERNAME):
         self._input(self.element(self.USERNAME), username)
 
+    @allure.step('Ввод данных для логина в админскую панель')
     def submit_button(self):
         self.click(self.element(self.SUBMIT_BUTTON))
 
+    @allure.step('Выбор каталога')
     def click_catalog(self):
         self.click(self.element(self.MENU_CATALOG))
 
+    @allure.step('Выбор элементов в каталоге')
     def catalog_elements(self):
         return self.elements(self.SUB_CATALOG)
 
+    @allure.step('Переход на главную страницу в админке')
     def navigate_to_dashboard(self):
         self.click(self.element(self.DASHBOARD))
 
+    @allure.step('Выбор категорий')
     def select_categories(self):
         self.click(self.element(self.CATEGORIES))
 
+    @allure.step('Сортировка элементов')
     def sort_order(self):
         self.click(self.element(self.SORT_OPTION))
 
+    @allure.step('Выбор уведомлений')
     def click_notification(self):
         self.click(self.element(self.NOTIFICATION_BELL))
 
+    @allure.step('Проверка текста уведомления')
     def check_notification_text(self):
         return self.element(self.NOTIFICATION_INFO)
 
+    @allure.step('Выбор настроек в админской панели')
     def click_setting_icon(self):
         self.click(self.element(self.SETTING_ICON))
         time.sleep(3)
 
+    @allure.step('Доступ к списку продуктов')
     def select_products(self):
         self.click(self.element(self.PRODUCTS))
 
+    @allure.step('Выбор опции по добавлению нового продукта')
     def click_add_option(self):
         self.click(self.element(self.ADD_OPTION))
 
+    @allure.step('Ввод данных для добавления нового продукта.')
     def add_product(self, product, meta_tag, model, keyword):
         self._input(self.element(self.PRODUCT_FIELD), product)
         self._input(self.element(self.META_TAG), meta_tag)
@@ -88,48 +100,14 @@ class AdminPage(BasePage):
         self.click(self.element(self.SEO_TAB))
         self._input(self.element(self.SEO_KEYWORD), keyword)
 
+    @allure.step('Выбор сортировке по цене')
     def click_price(self):
         self.click(self.element(self.PRICE_SORT))
 
+    @allure.step('Чек в поле первого продукта в списке')
     def check_first_product(self):
         self.click(self.element(self.FIRST_PRODUCT_CHECK))
 
+    @allure.step('Удаление продукта')
     def delete_product(self):
         self.click(self.element(self.DELETE_OPTION))
-
-    # def wait_and_accept_alert(self):
-    #     try:
-    #         WebDriverWait(self.driver, 10).until(EC.alert_is_present(), 'Timed out waiting for alert')
-    #         alert = self.switch_to.alert
-    #
-    #     except TimeoutException:
-    #         raise AssertionError(f"Не дождался видимости элемента")
-
-
-    # def __init__(self, driver):
-    #     super().__init__(driver)
-    #
-    # def admin_page(self, **kwargs):
-    #     self.driver.get(self.driver.url + "/administration")
-    #     PASSWORD = self.driver.find_element(By.CSS_SELECTOR, "#input-password")
-    #     PASSWORD.click()
-    #     PASSWORD.send_keys("bitnami")
-    #     USERNAME = self.driver.find_element(By.CSS_SELECTOR, "#input-username")
-    #     USERNAME.click()
-    #     USERNAME.send_keys("user")
-    #     SUBMIT_BUTTON = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
-    #     SUBMIT_BUTTON.click()
-    #     return self.driver
-
-    # def find_element(self, locator):
-    #     self.admin_page().find_element(*locator)
-    #
-    # def click_menu(self):
-    #     self.admin_page().fullscreen_window()
-    #     time.sleep(3)
-    #     new_el = self.admin_page().find_element(locator=self.MENU_CATALOG)
-    #     self.click(new_el)
-    #     # self.click(self.element(self.MENU_CATALOG))
-
-    # def click_checkout(self):
-    #     self.click(self.element_in_element(self.BUTTONS, self.CHECKOUT_LINK))
