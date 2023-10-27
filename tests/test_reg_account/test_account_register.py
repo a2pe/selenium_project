@@ -1,4 +1,5 @@
 import time
+import allure
 
 import pytest
 from faker import Faker
@@ -8,6 +9,10 @@ fake = Faker()
 NUM_OF_NEW_ACCOUNTS = 5
 
 
+@allure.epic('Epic #7')
+@allure.feature('Account Registration')
+@allure.story('Account Creation')
+@allure.title('Creating account with all checks and subscriptions')
 @pytest.mark.parametrize('email, name, lastname, password', [
     (fake.ascii_free_email(), fake.first_name(),
      fake.last_name(), fake.password()) for v in range(NUM_OF_NEW_ACCOUNTS)]

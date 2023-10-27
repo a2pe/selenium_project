@@ -1,9 +1,14 @@
 import time
+import allure
 
 from selenium.webdriver.common.by import By
 from selenium_project.page_objects.MainPage import MainPage
 
 
+@allure.epic('Epic #5')
+@allure.feature('Home Page Main Functions')
+@allure.story('Homepage Carousel')
+@allure.title('Checking the link for the first element in the carousel')
 def test_homepage_carousel(browser):
     """Тестирование ссылки на первый элемент в карусели на главной странице."""
     MainPage(browser).select_carousel()
@@ -16,6 +21,10 @@ def test_homepage_carousel(browser):
     assert element_3.text == 'Availability: Pre-Order'
 
 
+@allure.epic('Epic #5')
+@allure.feature('Home Page Main Functions')
+@allure.story('Homepage Search')
+@allure.title('Verifying the search results from the Home Page')
 def test_homepage_search(browser):
     """Тестирования поиска товаров и отображения результатов с главной страницы."""
     MainPage(browser).main_search()
@@ -25,6 +34,10 @@ def test_homepage_search(browser):
     assert len(product_number) == 2
 
 
+@allure.epic('Epic #5')
+@allure.feature('Home Page Main Functions')
+@allure.story('Homepage Currency Dropdown')
+@allure.title('Checking the texts for each of the currencies from the dropdown')
 def test_homepage_currency_dropdown(browser):
     """Тестирование дропдауна валют на главной странице"""
     MainPage(browser).click_currency_dropdown()
@@ -39,6 +52,10 @@ def test_homepage_currency_dropdown(browser):
     assert cur_3 == '$ US Dollar'
 
 
+@allure.epic('Epic #5')
+@allure.feature('Home Page Main Functions')
+@allure.story('Homepage Elements')
+@allure.title('Checking the title for the first element on the Home Page')
 def test_homepage_element(browser):
     """Проверка атрибута 'title' для первого элемента на главной странице."""
     browser.get(browser.url)
@@ -46,6 +63,10 @@ def test_homepage_element(browser):
     assert pic.get_attribute('title') == 'MacBook'
 
 
+@allure.epic('Epic #5')
+@allure.feature('Home Page Main Functions')
+@allure.story('Homepage Carousel')
+@allure.title('Checking the title for the second element in the carousel')
 def test_check_title_on_homepage(browser):
     """Тестирование ожидания элемента из карусели на главной странице."""
     browser.get(browser.url)
